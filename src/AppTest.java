@@ -18,6 +18,5 @@ public class AppTest {
         assertEquals(17721.96, app.computeBalance(10000, 4.5, 13, false), 0.1);
         assertEquals(17930.28, app.computeBalance(10000, 4.5, 13, true), 0.1);
         assertEquals(15674.32, app.computeBalance(10000, 3.0, 15, true), 0.1);
-        // assertEquals(31159.35, app.computeBalance(10000, 3.0, 15, true), 0.1);
     }
 }
