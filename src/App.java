@@ -7,8 +7,6 @@
 
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
-
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class App {
@@ -49,7 +47,8 @@ public class App {
     public static double getUserPrincipal() {// prompts the user to get their starting principle
         try {
             return Double.parseDouble(JOptionPane.showInputDialog(null, "What is your Starting Principal?"));
-        } catch (NumberFormatException e) {
+        } 
+        catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please make sure to enter a number", "Compound Interest Calculator",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -59,8 +58,13 @@ public class App {
     public static double getUserYears() {// prompts the user to get the number of years the principle will compound for
         try {
             return Double.parseDouble(JOptionPane.showInputDialog(null, "How many years will will the term be?"));
-        } catch (InputMismatchException e) {
+        } 
+        catch (InputMismatchException e) {
             JOptionPane.showMessageDialog(null, "please make sure to enter a number", "Compound Interest Calculator",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please try again", "Compound Interest Calculator",
                     JOptionPane.ERROR_MESSAGE);
         }
         return getUserYears();
@@ -69,16 +73,20 @@ public class App {
     public static double getUserPercent() {// prompts the user to get their interest rate
         try {
             return Double.parseDouble(JOptionPane.showInputDialog(null, "What is your interest rate percentage?"));
-        } catch (InputMismatchException e) {
-            JOptionPane.showConfirmDialog(null, "please make sure to enter a number", "Compound Interest Calculator",
+        } 
+        catch (InputMismatchException e) {
+            JOptionPane.showMessageDialog(null, "please make sure to enter a number", "Compound Interest Calculator",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "please try again", "Compound Interest Calculator",
                     JOptionPane.ERROR_MESSAGE);
         }
         return getUserPercent();
     }// end of method
 
     public static boolean getIsMonthly() {// returns true if the user selects to compound monthly and false for annually
-        return JOptionPane.showConfirmDialog(null, "will this compound monthly?", "Compound Interest Calculator",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, "will this compound monthly?", "Compound Interest Calculator",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }// end of method
 
     public static void GUI() {/*
@@ -90,7 +98,7 @@ public class App {
         double percentInterest = getUserPercent();
         double timeInYears = getUserYears();
         boolean isMonthly = getIsMonthly();
-        DecimalFormat round = new DecimalFormat("#.##");
+        DecimalFormat round = new DecimalFormat("###,###,###,###.##");
 
         JOptionPane.showMessageDialog(null,
                 "your total is $" + round.format(computeBalance(principle, percentInterest, timeInYears, isMonthly)),
